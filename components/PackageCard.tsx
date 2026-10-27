@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Check, Sparkles, Phone, Calendar } from 'lucide-react';
 import { BridalPackage } from '@/types';
 import { formatPKR } from '@/lib/utils';
@@ -11,8 +10,6 @@ interface PackageCardProps {
 }
 
 export default function PackageCard({ bridalPackage }: PackageCardProps) {
-  const [imageError, setImageError] = useState(false);
-
   const whatsappMsg = encodeURIComponent(
     `Hello Ayesha's Salon, I would like to enquire about or book the "${bridalPackage.name}" (${formatPKR(bridalPackage.price)}). Please share available dates.`
   );
@@ -27,29 +24,15 @@ export default function PackageCard({ bridalPackage }: PackageCardProps) {
       )}
 
       <div>
-        {/* Header Image or Clean Header */}
-        {bridalPackage.image && !imageError ? (
-          <div className="relative h-60 w-full overflow-hidden bg-[#F4F7FC]">
-            <img
-              src={bridalPackage.image}
-              alt={bridalPackage.name}
-              onError={() => setImageError(true)}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/70 via-[#0A2540]/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-6 right-6 text-white z-10">
-              <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">Bridal Suite</span>
-              <h3 className="font-serif text-2xl font-bold text-white mt-1">{bridalPackage.name}</h3>
-              <p className="text-xs text-[#E2E8F0] mt-1">{bridalPackage.tagline}</p>
-            </div>
-          </div>
-        ) : (
-          <div className="p-7 bg-[#0A2540] text-white">
+        {/* Guaranteed Reliable Luxury Header Block */}
+        <div className="p-7 bg-[#0A2540] text-white relative overflow-hidden">
+          <div className="absolute -right-10 -bottom-10 w-40 h-40 rounded-full bg-[#D4AF37]/15 blur-2xl pointer-events-none" />
+          <div className="relative z-10 space-y-1.5">
             <span className="text-xs uppercase tracking-widest text-[#D4AF37] font-semibold">Bridal Suite</span>
-            <h3 className="font-serif text-2xl font-bold text-white mt-1">{bridalPackage.name}</h3>
-            <p className="text-xs text-[#E2E8F0] mt-1">{bridalPackage.tagline}</p>
+            <h3 className="font-serif text-2xl font-bold text-white">{bridalPackage.name}</h3>
+            <p className="text-xs text-[#E2E8F0]">{bridalPackage.tagline}</p>
           </div>
-        )}
+        </div>
 
         {/* Pricing & Inclusions */}
         <div className="p-7 space-y-6">
